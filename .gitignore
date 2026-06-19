@@ -1,0 +1,42 @@
+# Eclipse
+.classpath
+.project
+.settings/
+
+# Diretórios de build
+bin/
+target/
+
+# Arquivos compilados
+*.class
+
+# Arquivos temporários
+*.log
+*.tmp
+*.bak
+*.swp
+.DS_Store
+Thumbs.db
+
+# Arquivos de IDEs
+.idea/
+.vscode/
+
+# Maven
+dependency-reduced-pom.xml
+
+# Arquivos de empacotamento
+*.jar
+*.war
+*.ear
+*.zip
+*.tar.gz
+*.rar
+
+# Arquivos de servidor (Tomcat)
+Servers/
+
+# JVM crash logs
+hs_err_pid*
+replay_pid*
+
