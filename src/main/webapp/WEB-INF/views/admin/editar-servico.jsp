@@ -1,16 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Consultar Serviços - Painel Administrativo</title>
+    <title>Editar Serviço - Painel Administrativo</title>
 
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/style.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/admin.css">
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 
@@ -62,58 +62,47 @@
         <main class="admin-content">
             
             <div class="admin-header">
-                <h2>Serviços Cadastrados</h2>
-                <a href="${pageContext.request.contextPath}/servicos/cadastro" class="botao btn-sm">
-                    <i class="fa-solid fa-plus"></i> Novo Serviço
-                </a>
+                <h2>Editar Serviço</h2>
             </div>
 
-            <div class="admin-table-container">
-                <table class="admin-table">
-                    <thead>
-                        <tr>
-                            <th style="width: 60px;">ID</th>
-                            <th style="width: 100px;">Foto</th>
-                            <th>Nome</th>
-                            <th>Descrição</th>
-                            <th style="width: 130px;">Valor</th>
-                            <th style="width: 180px; text-align: center;">Ações</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <c:forEach var="s" items="${servicos}">
-                            <tr>
-                                <td style="font-weight: bold; color: var(--text-muted);">#${s.idServico}</td>
-                                <td>
-                                    <c:choose>
-                                        <c:when test="${not empty s.foto}">
-                                            <img src="${s.foto}" alt="Miniatura" style="width: 70px; height: 50px; object-fit: cover; border-radius: 4px;">
-                                        </c:when>
-                                        <c:otherwise>
-                                            <div style="width: 70px; height: 50px; background: #eee; border-radius: 4px; display: flex; align-items: center; justify-content: center; color: #aaa; font-size: 0.8rem;">
-                                                <i class="fa-solid fa-image"></i>
-                                            </div>
-                                        </c:otherwise>
-                                    </c:choose>
-                                </td>
-                                <td style="font-weight: 500;">${s.nome}</td>
-                                <td style="color: var(--text-muted); font-size: 0.95rem;">${s.descricao}</td>
-                                <td style="color: #27ae60; font-weight: 600;">
-                                    <fmt:setLocale value="pt_BR"/>
-                                    <fmt:formatNumber value="${s.valor}" type="currency"/>
-                                </td>
-                                <td style="text-align: center; display: flex; gap: 8px; justify-content: center;">
-                                    <a href="${pageContext.request.contextPath}/servicos/editar?idServico=${s.idServico}" class="botao btn-sm" style="background-color: var(--accent-color);">
-                                        <i class="fa-solid fa-pen"></i> Editar
-                                    </a>
-                                    <a href="${pageContext.request.contextPath}/servicos/excluir?idServico=${s.idServico}" class="botao btn-sm" style="background-color: #e74c3c;" onclick="return confirm('Deseja realmente excluir este serviço?');">
-                                        <i class="fa-solid fa-trash"></i> Excluir
-                                    </a>
-                                </td>
-                            </tr>
-                        </c:forEach>
-                    </tbody>
-                </table>
+            <div class="form-container" style="margin: 0; max-width: 800px;">
+
+                <form action="${pageContext.request.contextPath}/servicos/atualizar" method="post">
+                    
+                    <input type="hidden" name="idServico" value="${servico.idServico}">
+
+                    <div class="form-group">
+                        <label for="nome">Nome do Serviço</label>
+                        <input type="text" id="nome" name="nome" value="${servico.nome}" class="form-control" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="descricao">Descrição</label>
+                        <textarea id="descricao" name="descricao" rows="5" class="form-control" required>${servico.descricao}</textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="valor">Valor (R$)</label>
+                        <input type="number" step="0.01" id="valor" name="valor" value="${servico.valor}" class="form-control" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="foto">URL da Foto</label>
+                        <input type="text" id="foto" name="foto" value="${servico.foto}" class="form-control" placeholder="https://images.unsplash.com/..." required>
+                    </div>
+
+                    <div style="margin-top: 30px; display: flex; gap: 15px;">
+                        <button type="submit" class="botao">
+                            <i class="fa-solid fa-save" style="margin-right: 8px;"></i> Salvar Alterações
+                        </button>
+                        
+                        <a href="${pageContext.request.contextPath}/servicos/consulta" class="botao" style="background-color: #7f8c8d;">
+                            <i class="fa-solid fa-times" style="margin-right: 8px;"></i> Cancelar
+                        </a>
+                    </div>
+
+                </form>
+
             </div>
 
         </main>

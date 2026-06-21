@@ -1,4 +1,4 @@
-CREATE TABLE usuario(
+CREATE TABLE usuario (
 
     idusuario SERIAL PRIMARY KEY,
 
@@ -10,7 +10,7 @@ CREATE TABLE usuario(
 
 );
 
-CREATE TABLE servico(
+CREATE TABLE servico (
 
     idservico SERIAL PRIMARY KEY,
 
@@ -18,27 +18,29 @@ CREATE TABLE servico(
 
     descricao VARCHAR(500) NOT NULL,
 
-    valor DECIMAL(10,2) NOT NULL
+    valor DECIMAL(10,2) NOT NULL,
+
+    foto VARCHAR(500)
 
 );
 
+CREATE TABLE contato (
 
-CREATE TABLE contato(
+    id_contato SERIAL PRIMARY KEY,
 
-    idcontato SERIAL PRIMARY KEY,
-
-    nome VARCHAR(150) NOT NULL,
+    nome VARCHAR(100) NOT NULL,
 
     email VARCHAR(100) NOT NULL,
 
     telefone VARCHAR(20),
 
-    mensagem VARCHAR(500) NOT NULL
+    mensagem VARCHAR(500) NOT NULL,
+
+    respondido BOOLEAN DEFAULT FALSE
 
 );
 
-
-CREATE TABLE avaliacao(
+CREATE TABLE avaliacao (
 
     idavaliacao SERIAL PRIMARY KEY,
 
@@ -49,7 +51,5 @@ CREATE TABLE avaliacao(
     nota INTEGER NOT NULL CHECK (nota BETWEEN 1 AND 5),
 
     comentario VARCHAR(500) NOT NULL,
-
-    dataavaliacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 
 );

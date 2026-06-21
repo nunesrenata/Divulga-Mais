@@ -14,14 +14,15 @@ public class CadastroController {
 
     @RequestMapping(value = "/servicos/cadastro")
     public ModelAndView cadastro() {
-        ModelAndView modelAndView = new ModelAndView("site/cadastro-servico");
-        return modelAndView;
+
+        return new ModelAndView("admin/cadastro-servico");
+
     }
 
     @RequestMapping(value = "/servicos/cadastrar", method = RequestMethod.POST)
     public ModelAndView cadastrarServico(HttpServletRequest request) {
-        
-        ModelAndView modelAndView = new ModelAndView("site/cadastro-servico");
+
+        ModelAndView modelAndView = new ModelAndView("admin/cadastro-servico");
 
         try {
 
@@ -30,18 +31,28 @@ public class CadastroController {
             servico.setNome(request.getParameter("nome_servico"));
             servico.setDescricao(request.getParameter("descricao_servico"));
             servico.setValor(Double.parseDouble(request.getParameter("valor_servico")));
+            servico.setFoto(request.getParameter("foto_servico"));
 
             ServicoRepository servicoRepository = new ServicoRepository();
             servicoRepository.save(servico);
 
-            modelAndView.addObject("mensagem_sucesso",
-                    "Serviço " + servico.getNome() + " cadastrado com sucesso!");
+            modelAndView.addObject(
+                "mensagem_sucesso",
+                "Serviço " + servico.getNome() + " cadastrado com sucesso!"
+            );
 
-        } catch (Exception e) {
-            modelAndView.addObject("mensagem_erro",
-                    "Erro ao cadastrar serviço: " + e.getMessage());
+        }
+        catch(Exception e){
+
+            modelAndView.addObject(
+                "mensagem_erro",
+                "Erro ao cadastrar serviço: " + e.getMessage()
+            );
+
         }
 
         return modelAndView;
+
     }
+
 }

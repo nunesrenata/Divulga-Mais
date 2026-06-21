@@ -17,5 +17,6 @@ public class Servico {
     private String nome;
     private String descricao;
     private Double valor;
+    private String foto;
 
 }

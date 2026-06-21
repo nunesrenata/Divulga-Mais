@@ -15,13 +15,14 @@ public class ServicoRepository {
 
         Connection connection = ConnectionFactory.getConnection();
 
-        String query = "insert into servico(nome, descricao, valor) values(?, ?, ?)";
+        String query = "insert into servico(nome, descricao, valor, foto) values(?, ?, ?, ?)";
 
         PreparedStatement statement = connection.prepareStatement(query);
 
         statement.setString(1, servico.getNome());
         statement.setString(2, servico.getDescricao());
         statement.setDouble(3, servico.getValor());
+        statement.setString(4, servico.getFoto());
 
         statement.execute();
 
@@ -48,6 +49,7 @@ public class ServicoRepository {
             servico.setNome(resultSet.getString("nome"));
             servico.setDescricao(resultSet.getString("descricao"));
             servico.setValor(resultSet.getDouble("valor"));
+            servico.setFoto(resultSet.getString("foto"));
 
             lista.add(servico);
 
@@ -80,6 +82,7 @@ public class ServicoRepository {
             servico.setNome(resultSet.getString("nome"));
             servico.setDescricao(resultSet.getString("descricao"));
             servico.setValor(resultSet.getDouble("valor"));
+            servico.setFoto(resultSet.getString("foto"));
 
         }
 
@@ -92,14 +95,15 @@ public class ServicoRepository {
 
         Connection connection = ConnectionFactory.getConnection();
 
-        String query = "update servico set nome=?, descricao=?, valor=? where idservico=?";
+        String query = "update servico set nome=?, descricao=?, valor=?, foto=? where idservico=?";
 
         PreparedStatement statement = connection.prepareStatement(query);
 
         statement.setString(1, servico.getNome());
         statement.setString(2, servico.getDescricao());
         statement.setDouble(3, servico.getValor());
-        statement.setInt(4, servico.getIdServico());
+        statement.setString(4, servico.getFoto());
+        statement.setInt(5, servico.getIdServico());
 
         statement.execute();
 
@@ -119,6 +123,7 @@ public class ServicoRepository {
         statement.execute();
 
         connection.close();
+    
     }
-
 }
+

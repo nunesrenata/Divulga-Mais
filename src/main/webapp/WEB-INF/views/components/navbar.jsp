@@ -1,88 +1,27 @@
-<style>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
-nav{
-    background:#2c3e50;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    padding:15px 40px;
-    box-shadow:0 2px 8px rgba(0,0,0,.2);
-}
-
-.logo a{
-    color:white;
-    text-decoration:none;
-    font-size:28px;
-    font-weight:bold;
-}
-
-nav ul{
-    list-style:none;
-    display:flex;
-    margin:0;
-    padding:0;
-}
-
-nav ul li{
-    margin-left:25px;
-}
-
-nav ul li a{
-    color:white;
-    text-decoration:none;
-    font-size:16px;
-    font-weight:bold;
-    transition:.3s;
-}
-
-nav ul li a:hover{
-    color:#f1c40f;
-}
-
-</style>
-
-<nav>
-
+<nav class="navbar">
     <div class="logo">
-
         <a href="<%=request.getContextPath()%>/">
-
+            Divulga Mais
         </a>
-
     </div>
 
-    <ul>
-
+    <ul class="nav-links">
         <li>
-            <a href="<%=request.getContextPath()%>/">
-                Home
-            </a>
+            <a href="<%=request.getContextPath()%>/">Home</a>
         </li>
-
         <li>
-             <a href="#servicos">
-                ServiÁos
-            </a>
+            <a href="<%=request.getContextPath()%>/#servicos">Servi√ßos</a>
         </li>
-
         <li>
-            <a href="#avaliacoes">
-                AvaliaÁıes
-            </a>
+            <a href="<%=request.getContextPath()%>/#avaliacoes">Avalia√ß√µes</a>
         </li>
-
         <li>
-            <a href="#contato">
-                Contato
-            </a>
+            <a href="<%=request.getContextPath()%>/#contato">Contato</a>
         </li>
-
         <li>
-            <a href="<%=request.getContextPath()%>/login">
-                ¡rea Administrativa
-            </a>
+            <a href="<%=request.getContextPath()%>/login" class="nav-admin-btn">√Årea Administrativa</a>
         </li>
-
     </ul>
-
 </nav>

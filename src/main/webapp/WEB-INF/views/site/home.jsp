@@ -1,408 +1,432 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<% request.setCharacterEncoding("UTF-8"); %>
 
 <!DOCTYPE html>
-<html>
+<html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<title>Divulga Mais</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Divulga Mais</title>
 
-<style>
-body {
-	margin: 0;
-	font-family: Arial, Helvetica, sans-serif;
-	background: #f5f5f5;
-}
-
-header {
-	background: #2c3e50;
-	color: white;
-	padding: 20px;
-	text-align: center;
-}
-
-nav {
-	background: #34495e;
-	padding: 15px;
-	text-align: center;
-}
-
-nav a {
-	color: white;
-	text-decoration: none;
-	margin: 15px;
-	font-weight: bold;
-}
-
-.banner {
-	padding: 80px;
-	text-align: center;
-	background: white;
-}
-
-.banner h1 {
-	font-size: 42px;
-	margin-bottom: 10px;
-}
-
-.banner p {
-	font-size: 20px;
-	color: #666;
-}
-
-section {
-	padding: 50px;
-}
-
-.cards {
-	display: flex;
-	justify-content: space-around;
-	flex-wrap: wrap;
-}
-
-.card {
-	width: 300px;
-	background: white;
-	border-radius: 10px;
-	box-shadow: 0 0 10px rgba(0, 0, 0, .2);
-	margin: 15px;
-	padding: 20px;
-	text-align: center;
-}
-
-.card img {
-	width: 100%;
-	height: 200px;
-	object-fit: cover;
-	border-radius: 10px;
-}
-
-.botao {
-	display: inline-block;
-	margin-top: 20px;
-	background: #2c3e50;
-	color: white;
-	padding: 12px 25px;
-	text-decoration: none;
-	border-radius: 5px;
-}
-
-footer {
-	background: #2c3e50;
-	color: white;
-	text-align: center;
-	padding: 20px;
-	margin-top: 40px;
-}
-</style>
-
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/style.css?v=6.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 
 <body>
 
-	<header>
-
-		<h1>Divulga Mais</h1>
-
-		<p>Seu profissional na internet.</p>
-
-	</header>
-
-	<nav>
-
-		<jsp:include page="../components/navbar.jsp" />
-
-	</nav>
-
-	<div class="banner">
-
-		<h1>Bem-vindo!</h1>
-
-		<p>Conheça nossos serviços e entre em contato.</p>
-
-		<a href="<%=request.getContextPath()%>/site/servicos" class="btn">
-			Ver Serviços </a>
-
-	</div>
-
-	<section id="sobre">
-
-		<h2>Sobre o Profissional</h2>
-
-		<p>Sou um profissional autônomo especializado em oferecer serviços
-			com qualidade, comprometimento e atendimento personalizado.</p>
-
-	</section>
-
-	<section id="servicos">
-
-		<h2>Serviços</h2>
-
-		<div class="cards">
-
-			<c:forEach var="s" items="${servicos}">
-
-				<div class="card">
-
-					<img src="imagens/servico1.jpg">
-
-					<h3>${s.nome}</h3>
-
-					<p>${s.descricao}</p>
-
-					<h4>R$ ${s.valor}</h4>
-
-				</div>
-
-			</c:forEach>
-
-		</div>
-	</section>
-
-	<section id="avaliacoes">
-
-		<h2 style="text-align: center;">Avaliações dos Clientes</h2>
-
-		<c:forEach var="a" items="${avaliacoes}">
-
-			<div class="card" style="margin: 20px auto; width: 70%;">
-
-				<h3>${a.nome}</h3>
-
-				<p>
-
-					<c:choose>
-
-						<c:when test="${a.nota==1}">⭐</c:when>
-
-						<c:when test="${a.nota==2}">⭐⭐</c:when>
-
-						<c:when test="${a.nota==3}">⭐⭐⭐</c:when>
-
-						<c:when test="${a.nota==4}">⭐⭐⭐⭐</c:when>
-
-						<c:otherwise>⭐⭐⭐⭐⭐</c:otherwise>
-
-					</c:choose>
-
-				</p>
-
-				<p>${a.comentario}</p>
-
-			</div>
-
-		</c:forEach>
-
-		<hr>
-
-		<h2 style="text-align: center;">Deixe sua avaliação</h2>
-
-		<form action="<%=request.getContextPath()%>/avaliacao" method="post">
-
-			<table style="margin: auto; width: 500px;">
-
-				<tr>
-
-					<td>Nome</td>
-
-				</tr>
-
-				<tr>
-
-					<td><input type="text" name="nome" required
-						style="width: 100%; padding: 10px;"></td>
-
-				</tr>
-
-				<tr>
-
-					<td>Telefone</td>
-
-				</tr>
-
-				<tr>
-
-					<td><input type="text" name="telefone"
-						style="width: 100%; padding: 10px;"></td>
-
-				</tr>
-
-				<tr>
-
-					<td>Nota</td>
-
-				</tr>
-
-				<tr>
-
-					<td>
-
-						<style>
-.estrelas {
-	display: flex;
-	flex-direction: row-reverse;
-	justify-content: flex-end;
-}
-
-.estrelas input {
-	display: none;
-}
-
-.estrelas label {
-	font-size: 35px;
-	color: #ccc;
-	cursor: pointer;
-	transition: .2s;
-}
-
-.estrelas input:checked ~ label {
-	color: #FFD700;
-}
-
-.estrelas label:hover, .estrelas label:hover ~ label {
-	color: #FFD700;
-}
-</style>
-
-						<div class="estrelas">
-
-							<input type="radio" id="estrela5" name="nota" value="5" required>
-							<label for="estrela5">★</label> <input type="radio" id="estrela4"
-								name="nota" value="4"> <label for="estrela4">★</label> <input
-								type="radio" id="estrela3" name="nota" value="3"> <label
-								for="estrela3">★</label> <input type="radio" id="estrela2"
-								name="nota" value="2"> <label for="estrela2">★</label> <input
-								type="radio" id="estrela1" name="nota" value="1"> <label
-								for="estrela1">★</label>
-
-						</div>
-
-					</td>
-
-				</tr>
-
-				<tr>
-
-					<td>Comentário</td>
-
-				</tr>
-
-				<tr>
-
-					<td><textarea name="comentario" rows="5"
-							style="width: 100%; padding: 10px;" required></textarea></td>
-
-				</tr>
-
-				<tr>
-
-					<td style="text-align: center; padding-top: 20px;"><input
-						type="submit" value="Enviar Avaliação" class="botao"
-						style="border: none; cursor: pointer;"></td>
-
-				</tr>
-
-			</table>
-
-		</form>
-
-	</section>
-
-	<section id="contato">
-
-		<h2>Entre em Contato</h2>
-
-		<p>Preencha o formulário abaixo e entraremos em contato o mais
-			breve possível.</p>
-
-		<%
-		if (request.getAttribute("mensagem_sucesso") != null) {
-		%>
-
-		<div
-			style="width: 500px; margin: 20px auto; padding: 15px; background: #d4edda; color: #155724; border: 1px solid #c3e6cb; border-radius: 8px; text-align: center; font-weight: bold;">
-
-			<%=request.getAttribute("mensagem_sucesso")%>
-
-		</div>
-
-		<%
-		}
-		%>
-
-		<%
-		if (request.getAttribute("mensagem_erro") != null) {
-		%>
-
-		<div
-			style="width: 500px; margin: 20px auto; padding: 15px; background: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; border-radius: 8px; text-align: center; font-weight: bold;">
-
-			<%=request.getAttribute("mensagem_erro")%>
-
-		</div>
-
-		<%
-		}
-		%>
-
-		<form action="<%=request.getContextPath()%>/contato" method="post">
-
-			<table style="margin: auto; width: 500px;">
-
-				<tr>
-					<td>Nome:</td>
-				</tr>
-
-				<tr>
-					<td><input type="text" name="nome" required
-						style="width: 100%; padding: 10px;"></td>
-				</tr>
-
-				<tr>
-					<td>Email:</td>
-				</tr>
-
-				<tr>
-					<td><input type="email" name="email" required
-						style="width: 100%; padding: 10px;"></td>
-				</tr>
-
-				<tr>
-					<td>Telefone:</td>
-				</tr>
-
-				<tr>
-					<td><input type="text" name="telefone"
-						style="width: 100%; padding: 10px;"></td>
-				</tr>
-
-				<tr>
-					<td>Mensagem:</td>
-				</tr>
-
-				<tr>
-					<td><textarea name="mensagem" rows="6"
-							style="width: 100%; padding: 10px;"></textarea></td>
-				</tr>
-
-				<tr>
-					<td style="text-align: center; padding-top: 20px;"><input
-						type="submit" value="Enviar Mensagem" class="botao"
-						style="border: none; cursor: pointer;"></td>
-				</tr>
-
-			</table>
-
-		</form>
-
-	</section>
-
-	<footer>
-
-		<p>© 2026 - Divulga Mais</p>
-
-	</footer>
+    <jsp:include page="/WEB-INF/views/components/navbar.jsp" />
+
+    <div class="banner-hero">
+        <div class="hero-conteudo">
+            <h1>Bem-vindo ao Divulga Mais!</h1>
+            <p>Conheça nossos serviços especializados e entre em contato para impulsionar os seus resultados com o melhor atendimento personalizado do mercado.</p>
+            
+            <div class="hero-badges">
+                <span class="badge-item"><i class="fa-solid fa-award"></i> Qualidade Garantida</span>
+                <span class="badge-item"><i class="fa-solid fa-user-check"></i> Foco no Cliente</span>
+                <span class="badge-item"><i class="fa-solid fa-bolt"></i> Entrega Rápida</span>
+                <span class="badge-item"><i class="fa-solid fa-headset"></i> Suporte Premium</span>
+            </div>
+        </div>
+        
+        <div class="hero-imagem-wrapper">
+            <div class="hero-grafico-abstract">
+                <div class="circulo-decorativo c1"></div>
+                <div class="circulo-decorativo c2"></div>
+                
+                <div class="card-mockup-floating">
+                    <div class="mockup-icon-box">
+                        <i class="fa-solid fa-chart-line" style="color: #3498db; font-size: 2rem;"></i>
+                    </div>
+                    <h4>Performance & Crescimento</h4>
+                    <p>Seu negócio em outro nível</p>
+                    <div class="mockup-barrinhas">
+                        <div class="barrinha" style="width: 80%; background-color: #2ecc71;"></div>
+                        <div class="barrinha" style="width: 60%; background-color: #3498db;"></div>
+                    </div>
+                </div>
+
+                <div class="card-mockup-floating card-flutuante-2">
+                    <div class="mockup-icon-box" style="background-color: #fdf2f8;">
+                        <i class="fa-solid fa-wand-magic-sparkles" style="color: #e84393; font-size: 1.5rem;"></i>
+                    </div>
+                    <h4>Design Moderno</h4>
+                    <p>Foco na experiência do usuário</p>
+                </div>
+
+                <div class="card-mockup-floating card-flutuante-3">
+                    <div class="mockup-icon-box" style="background-color: #fffbeb;">
+                        <i class="fa-solid fa-shield-halved" style="color: #f1c40f; font-size: 1.5rem;"></i>
+                    </div>
+                    <h4>Segurança Total</h4>
+                    <p>Seus dados 100% protegidos</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section id="sobre">
+        <h2>Sobre o Profissional</h2>
+        
+        <div class="sobre-wrapper">
+            <div class="sobre-foto-container">
+                <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Profissional trabalhando" class="foto-sobre">
+            </div>
+            
+            <div class="sobre-textos">
+                <p>
+                    Sou um profissional autônomo especializado em oferecer serviços
+                    com qualidade, comprometimento e atendimento personalizado.
+                </p>
+                <p>
+                    Com vasta experiência no mercado digital, meu principal objetivo é transformar a sua visão em realidade. Aplico as melhores e mais recentes práticas de desenvolvimento para garantir que o seu projeto não seja apenas visualmente atrativo, mas altamente funcional, escalável e focado em gerar conversões.
+                </p>
+                
+                <div class="sobre-mini-cards">
+                    <div class="mini-card">
+                        <i class="fa-solid fa-laptop-code"></i>
+                        <span>Soluções Inovadoras</span>
+                    </div>
+                    <div class="mini-card">
+                        <i class="fa-solid fa-bullseye"></i>
+                        <span>Foco em Resultados</span>
+                    </div>
+                    <div class="mini-card">
+                        <i class="fa-solid fa-handshake"></i>
+                        <span>Parceria Transparente</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="diferenciais" style="padding: 60px 20px; background: var(--bg-total, transparent);">
+        <h2>Por Que Nos Escolher?</h2>
+        <p style="text-align: center; color: var(--text-muted); margin-bottom: 40px;">Entenda nossos pilares para entregar o melhor resultado para o seu negócio.</p>
+        
+        <div class="grid-diferenciais">
+            <div class="card-diferencial">
+                <div class="icon-box"><i class="fa-solid fa-bolt"></i></div>
+                <h3>Alta Performance</h3>
+                <p>Otimização severa de processos e carregamentos para garantir velocidade máxima.</p>
+            </div>
+            
+            <div class="card-diferencial">
+                <div class="icon-box"><i class="fa-solid fa-shield-halved"></i></div>
+                <h3>Segurança Ponta a Ponta</h3>
+                <p>Protocolos rígidos e boas práticas de desenvolvimento para proteção total dos dados.</p>
+            </div>
+            
+            <div class="card-diferencial">
+                <div class="icon-box"><i class="fa-solid fa-headset"></i></div>
+                <h3>Suporte Dedicado</h3>
+                <p>Acompanhamento contínuo e canais de comunicação abertos para resolver suas dúvidas.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="secao-metricas">
+        <div class="metrica-item">
+            <span class="metrica-numero" data-target="150" data-suffix="+">0</span>
+            <span class="metrica-texto">Projetos Entregues</span>
+        </div>
+        <div class="metrica-item">
+            <span class="metrica-numero" data-target="99.2" data-suffix="%">0</span>
+            <span class="metrica-texto">Satisfação dos Clientes</span>
+        </div>
+        <div class="metrica-item">
+            <span class="metrica-numero" data-target="5" data-suffix="+">0</span>
+            <span class="metrica-texto">Anos de Experiência</span>
+        </div>
+        <div class="metrica-item">
+            <span class="metrica-numero" data-target="24" data-suffix="/7">0</span>
+            <span class="metrica-texto">Monitoramento Ativo</span>
+        </div>
+    </section>
+
+    <section id="servicos">
+        <h2>Serviços</h2>
+        <div class="cards">
+            <c:forEach var="s" items="${servicos}">
+                <div class="card">
+                    <c:choose>
+                        <c:when test="${not empty s.foto}">
+                            <img src="${s.foto}" alt="${s.nome}">
+                        </c:when>
+                        <c:otherwise>
+                            <img src="https://placehold.co/600x400?text=Sem+Imagem" alt="Sem imagem">
+                        </c:otherwise>
+                    </c:choose>
+                    <h3>${s.nome}</h3>
+                    <p>${s.descricao}</p>
+                    <div class="price">
+                        <fmt:setLocale value="pt_BR"/>
+                        <fmt:formatNumber value="${s.valor}" type="currency"/>
+                    </div>
+                </div>
+            </c:forEach>
+        </div>
+
+        <div style="text-align: center; margin-top: 50px;">
+            <a href="${pageContext.request.contextPath}/site/servicos" class="botao" style="background-color: var(--accent-color); padding: 14px 35px; font-size: 1.05rem; box-shadow: 0 4px 15px rgba(52, 152, 219, 0.3);">
+                Veja mais sobre os serviços <i class="fa-solid fa-arrow-right" style="margin-left: 8px;"></i>
+            </a>
+        </div>
+    </section>
+
+    <section id="avaliacoes">
+        <h2>Avaliações dos Clientes</h2>
+        
+        <div class="cards">
+            <c:forEach var="a" items="${avaliacoes}">
+                <div class="card">
+                    <h3>${a.nome}</h3>
+                    <p class="estrelas-display" style="font-size: 1.5rem; letter-spacing: 2px;">
+                        <c:choose>
+                            <c:when test="${a.nota==1}">⭐</c:when>
+                            <c:when test="${a.nota==2}">⭐⭐</c:when>
+                            <c:when test="${a.nota==3}">⭐⭐⭐</c:when>
+                            <c:when test="${a.nota==4}">⭐⭐⭐⭐</c:when>
+                            <c:otherwise>⭐⭐⭐⭐⭐</c:otherwise>
+                        </c:choose>
+                    </p>
+                    <p>${a.comentario}</p>
+                </div>
+            </c:forEach>
+        </div>
+
+        <hr style="margin: 60px 0; border: 0; border-top: 1px solid var(--border-color);">
+
+        <h2>Deixe sua avaliação</h2>
+        
+        <c:if test="${not empty mensagem_sucesso_avaliacao}">
+            <div class="alert alert-success">
+                ${mensagem_sucesso_avaliacao}
+            </div>
+            <c:remove var="mensagem_sucesso_avaliacao" scope="session" />
+        </c:if>
+
+        <c:if test="${not empty mensagem_erro_avaliacao}">
+            <div class="alert alert-danger">
+                ${mensagem_erro_avaliacao}
+            </div>
+            <c:remove var="mensagem_erro_avaliacao" scope="session" />
+        </c:if>
+        
+        <div class="form-container">
+            <form action="${pageContext.request.contextPath}/avaliacao" method="post" accept-charset="UTF-8">
+                <div class="form-group">
+                    <label for="nomeAvaliacao">Nome</label>
+                    <input type="text" id="nomeAvaliacao" name="nome" class="form-control" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="telefoneAvaliacao">Telefone</label>
+                    <input type="text" id="telefoneAvaliacao" name="telefone" class="form-control">
+                </div>
+
+                <div class="form-group">
+                    <label>Nota</label>
+                    <div class="estrelas">
+                        <input type="radio" id="estrela5" name="nota" value="5" required>
+                        <label for="estrela5">★</label>
+                        <input type="radio" id="estrela4" name="nota" value="4">
+                        <label for="estrela4">★</label>
+                        <input type="radio" id="estrela3" name="nota" value="3">
+                        <label for="estrela3">★</label>
+                        <input type="radio" id="estrela2" name="nota" value="2">
+                        <label for="estrela2">★</label>
+                        <input type="radio" id="estrela1" name="nota" value="1">
+                        <label for="estrela1">★</label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="comentario">Comentário</label>
+                    <textarea id="comentario" name="comentario" rows="5" class="form-control" required></textarea>
+                </div>
+
+                <div style="text-align: center; margin-top: 30px;">
+                    <button type="submit" class="botao">Enviar Avaliação</button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <section id="faq" style="padding: 60px 20px;">
+        <h2>Perguntas Frequentes</h2>
+        <p style="text-align: center; color: var(--text-muted); margin-bottom: 40px;">Respostas rápidas para as principais dúvidas sobre nossa dinâmica de atuação.</p>
+        
+        <div class="faq-container">
+            <details class="faq-item">
+                <summary>Como funciona o processo de contratação?</summary>
+                <div class="faq-content">
+                    <p>Após preencher o formulário de contato, realizamos uma reunião de alinhamento para entender seu escopo, gerar uma proposta comercial formalizada e iniciar o cronograma após aprovação.</p>
+                </div>
+            </details>
+            
+            <details class="faq-item">
+                <summary>Quais são as formas de pagamento aceitas?</summary>
+                <div class="faq-content">
+                    <p>Trabalhamos com faturamento via PIX, transferências bancárias ou parcelamento estruturado via cartão de crédito, dependendo da complexidade e duração do projeto acordado.</p>
+                </div>
+            </details>
+
+            <details class="faq-item">
+                <summary>Existe garantia ou suporte após a entrega do serviço?</summary>
+                <div class="faq-content">
+                    <p>Sim! Todos os serviços contam com uma janela padrão de 30 dias de suporte técnico assistido para correções, ajustes estruturais e garantia de estabilidade operacional técnica.</p>
+                </div>
+            </details>
+        </div>
+    </section>
+
+    <section id="contato">
+        <h2>Entre em Contato</h2>
+        <p style="text-align: center; margin-bottom: 30px;">Preencha o formulário abaixo e entraremos em contato o mais breve possível.</p>
+
+        <c:if test="${not empty mensagem_sucesso_contato}">
+            <div class="alert alert-success">
+                ${mensagem_sucesso_contato}
+            </div>
+            <c:remove var="mensagem_sucesso_contato" scope="session" />
+        </c:if>
+
+        <c:if test="${not empty mensagem_erro_contato}">
+            <div class="alert alert-danger">
+                ${mensagem_erro_contato}
+            </div>
+            <c:remove var="mensagem_erro_contato" scope="session" />
+        </c:if>
+
+        <div class="form-container">
+            <form action="${pageContext.request.contextPath}/contato" method="post" accept-charset="UTF-8">
+                <div class="form-group">
+                    <label for="nomeContato">Nome</label>
+                    <input type="text" id="nomeContato" name="nome" class="form-control" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="emailContato">Email</label>
+                    <input type="email" id="emailContato" name="email" class="form-control" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="telContato">Telefone</label>
+                    <input type="text" id="telContato" name="telefone" class="form-control">
+                </div>
+
+                <div class="form-group">
+                    <label for="mensagem">Mensagem</label>
+                    <textarea id="mensagem" name="mensagem" rows="6" class="form-control"></textarea>
+                </div>
+
+                <div style="text-align: center; margin-top: 30px;">
+                    <button type="submit" class="botao">Enviar Mensagem</button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <jsp:include page="/WEB-INF/views/components/footer.jsp" />
+
+    <div style="position: fixed; bottom: 25px; right: 25px; background: var(--surface-color, #ffffff); padding: 12px 18px; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.2); z-index: 1000; display: flex; flex-direction: column; align-items: center; border: 1px solid var(--border-color, #e0e0e0);">
+        <span style="color: var(--text-main, #2c3e50); font-size: 0.8rem; font-weight: bold; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 1px;">
+            <i class="fa-solid fa-moon" style="color: #f1c40f; margin-right: 4px;"></i> Modo Noite
+        </span>
+        <label class="theme-switch" for="checkbox-tema" style="margin: 0;">
+            <input type="checkbox" id="checkbox-tema" />
+            <div class="slider round"></div>
+        </label>
+    </div>
+
+    <script>
+        const toggleSwitch = document.querySelector('#checkbox-tema');
+        const currentTheme = localStorage.getItem('theme');
+        
+        function ativarModoEscuro() {
+            if (!document.getElementById('dark-mode-stylesheet')) {
+                const link = document.createElement('link');
+                link.id = 'dark-mode-stylesheet';
+                link.rel = 'stylesheet';
+                link.href = '${pageContext.request.contextPath}/resources/dark.css?v=' + new Date().getTime();
+                document.head.appendChild(link);
+            }
+        }
+
+        function desativarModoEscuro() {
+            const darkLink = document.getElementById('dark-mode-stylesheet');
+            if (darkLink) {
+                darkLink.remove();
+            }
+        }
+
+        if (currentTheme === 'dark') {
+            toggleSwitch.checked = true;
+            ativarModoEscuro();
+        }
+
+        toggleSwitch.addEventListener('change', function(e) {
+            if (e.target.checked) {
+                ativarModoEscuro();
+                localStorage.setItem('theme', 'dark');
+            } else {
+                desativarModoEscuro();
+                localStorage.setItem('theme', 'light');
+            }    
+        });
+
+        document.addEventListener("DOMContentLoaded", function() {
+            const alerta = document.querySelector('.alert');
+            if (alerta) {
+                setTimeout(() => {
+                    alerta.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }, 300);
+            }
+        });
+
+        document.addEventListener("DOMContentLoaded", function() {
+            const counters = document.querySelectorAll('.metrica-numero');
+            const speed = 60; 
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) { 
+                        counters.forEach(counter => {
+                            const target = parseFloat(counter.getAttribute('data-target'));
+                            const suffix = counter.getAttribute('data-suffix');
+                            const isFloat = counter.getAttribute('data-target').includes('.');
+
+                            const updateCount = () => {
+                                const currentCount = parseFloat(counter.innerText.replace(suffix, '')) || 0;
+                                const increment = target / speed;
+
+                                if (currentCount < target) {
+                                    let newCount = currentCount + increment;
+                                    if(newCount > target) newCount = target; 
+                                    
+                                    counter.innerText = (isFloat ? newCount.toFixed(1) : Math.ceil(newCount)) + suffix;
+                                    setTimeout(updateCount, 30);
+                                } else {
+                                    counter.innerText = target + suffix;
+                                }
+                            };
+
+                            updateCount();
+                        });
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.5 }); 
+
+            const secaoMetricas = document.querySelector('.secao-metricas');
+            if (secaoMetricas) {
+                observer.observe(secaoMetricas);
+            }
+        });
+    </script>
 
 </body>
 </html>

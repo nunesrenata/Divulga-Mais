@@ -1,16 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Consultar Serviços - Painel Administrativo</title>
+    <title>Mensagens Recebidas - Painel Administrativo</title>
 
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/style.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/admin.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/admin.css?v=2.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 
@@ -36,12 +35,12 @@
                     </a>
                 </li>
                 <li>
-                    <a href="${pageContext.request.contextPath}/servicos/consulta" class="active">
+                    <a href="${pageContext.request.contextPath}/servicos/consulta">
                         <i class="fa-solid fa-list-check"></i> Meus Serviços
                     </a>
                 </li>
                 <li>
-                    <a href="${pageContext.request.contextPath}/contatos">
+                    <a href="${pageContext.request.contextPath}/contatos" class="active">
                         <i class="fa-solid fa-envelope"></i> Mensagens
                     </a>
                 </li>
@@ -62,10 +61,7 @@
         <main class="admin-content">
             
             <div class="admin-header">
-                <h2>Serviços Cadastrados</h2>
-                <a href="${pageContext.request.contextPath}/servicos/cadastro" class="botao btn-sm">
-                    <i class="fa-solid fa-plus"></i> Novo Serviço
-                </a>
+                <h2>Caixa de Mensagens</h2>
             </div>
 
             <div class="admin-table-container">
@@ -73,43 +69,63 @@
                     <thead>
                         <tr>
                             <th style="width: 60px;">ID</th>
-                            <th style="width: 100px;">Foto</th>
-                            <th>Nome</th>
-                            <th>Descrição</th>
-                            <th style="width: 130px;">Valor</th>
-                            <th style="width: 180px; text-align: center;">Ações</th>
+                            <th style="width: 160px;">Nome</th>
+                            <th style="width: 180px;">Contato</th>
+                            <th>Mensagem</th>
+                            <th style="width: 120px;">Status</th>
+                            <th style="width: 150px;">Ação</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <c:forEach var="s" items="${servicos}">
-                            <tr>
-                                <td style="font-weight: bold; color: var(--text-muted);">#${s.idServico}</td>
+                        <c:forEach var="c" items="${contatos}">
+                            
+                            <tr class="<c:if test='${c.respondido}'>linha-apagada</c:if>">
+                                
+                                <td style="font-weight: bold; color: var(--text-muted);">#${c.idContato}</td>
+                                <td>${c.nome}</td>
+                                <td>
+                                    <div style="margin-bottom: 5px;">
+                                        <i class="fa-solid fa-envelope" style="color: var(--accent-color); margin-right: 5px;"></i>
+                                        <a href="mailto:${c.email}" style="color: var(--text-main); text-decoration: none;">${c.email}</a>
+                                    </div>
+                                    <div>
+                                        <i class="fa-solid fa-phone" style="color: #27ae60; margin-right: 5px;"></i>
+                                        <c:choose>
+                                            <c:when test="${not empty c.telefone}">${c.telefone}</c:when>
+                                            <c:otherwise><span style="color: #aaa; font-size: 0.9em;">Não informado</span></c:otherwise>
+                                        </c:choose>
+                                    </div>
+                                </td>
+                                <td style="vertical-align: top; line-height: 1.5;">
+                                    ${c.mensagem}
+                                </td>
+                                
                                 <td>
                                     <c:choose>
-                                        <c:when test="${not empty s.foto}">
-                                            <img src="${s.foto}" alt="Miniatura" style="width: 70px; height: 50px; object-fit: cover; border-radius: 4px;">
+                                        <c:when test="${c.respondido}">
+                                            <span class="badge-status respondido">Respondido</span>
                                         </c:when>
                                         <c:otherwise>
-                                            <div style="width: 70px; height: 50px; background: #eee; border-radius: 4px; display: flex; align-items: center; justify-content: center; color: #aaa; font-size: 0.8rem;">
-                                                <i class="fa-solid fa-image"></i>
-                                            </div>
+                                            <span class="badge-status pendente">Pendente</span>
                                         </c:otherwise>
                                     </c:choose>
                                 </td>
-                                <td style="font-weight: 500;">${s.nome}</td>
-                                <td style="color: var(--text-muted); font-size: 0.95rem;">${s.descricao}</td>
-                                <td style="color: #27ae60; font-weight: 600;">
-                                    <fmt:setLocale value="pt_BR"/>
-                                    <fmt:formatNumber value="${s.valor}" type="currency"/>
+                                
+                                <td>
+                                    <c:choose>
+                                        <c:when test="${c.respondido}">
+                                            <a href="${pageContext.request.contextPath}/alterarStatusContato?id=${c.idContato}&status=false" class="btn-status reverter">
+                                                <i class="fa-solid fa-rotate-left"></i> Desmarcar
+                                            </a>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <a href="${pageContext.request.contextPath}/alterarStatusContato?id=${c.idContato}&status=true" class="btn-status confirmar">
+                                                <i class="fa-solid fa-check"></i> Responder
+                                            </a>
+                                        </c:otherwise>
+                                    </c:choose>
                                 </td>
-                                <td style="text-align: center; display: flex; gap: 8px; justify-content: center;">
-                                    <a href="${pageContext.request.contextPath}/servicos/editar?idServico=${s.idServico}" class="botao btn-sm" style="background-color: var(--accent-color);">
-                                        <i class="fa-solid fa-pen"></i> Editar
-                                    </a>
-                                    <a href="${pageContext.request.contextPath}/servicos/excluir?idServico=${s.idServico}" class="botao btn-sm" style="background-color: #e74c3c;" onclick="return confirm('Deseja realmente excluir este serviço?');">
-                                        <i class="fa-solid fa-trash"></i> Excluir
-                                    </a>
-                                </td>
+
                             </tr>
                         </c:forEach>
                     </tbody>
@@ -139,7 +155,7 @@
                 const link = document.createElement('link');
                 link.id = 'dark-mode-stylesheet';
                 link.rel = 'stylesheet';
-                link.href = '${pageContext.request.contextPath}/resources/dark.css';
+                link.href = '${pageContext.request.contextPath}/resources/dark.css?v=' + new Date().getTime();
                 document.head.appendChild(link);
             }
         }
@@ -160,10 +176,10 @@
             toggleSwitch.addEventListener('change', function(e) {
                 if (e.target.checked) {
                     ativarModoEscuro();
-                    localStorage.setItem('theme', 'dark'); 
+                    localStorage.setItem('theme', 'dark');
                 } else {
                     desativarModoEscuro();
-                    localStorage.setItem('theme', 'light'); 
+                    localStorage.setItem('theme', 'light');
                 }    
             });
         }

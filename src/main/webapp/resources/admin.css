@@ -1,0 +1,284 @@
+.admin-layout {
+    display: flex;
+    min-height: 100vh;
+    background-color: var(--bg-color);
+}
+
+.admin-sidebar {
+    width: 260px;
+    background-color: var(--surface-color);
+    border-right: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    height: 100vh;
+    overflow-y: auto;
+}
+
+.admin-sidebar-header {
+    padding: 20px;
+    text-align: center;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.admin-sidebar-header h3 {
+    color: var(--primary-color);
+    font-size: 1.2rem;
+}
+
+.admin-menu {
+    list-style: none;
+    padding: 20px 0;
+    margin: 0;
+}
+
+.admin-menu li {
+    margin-bottom: 5px;
+}
+
+.admin-menu a {
+    display: flex;
+    align-items: center;
+    padding: 12px 25px;
+    color: var(--text-main);
+    text-decoration: none;
+    font-weight: 500;
+    transition: var(--transition);
+}
+
+.admin-menu a i {
+    width: 25px;
+    font-size: 1.1rem;
+    color: var(--text-muted);
+}
+
+.admin-menu a:hover, .admin-menu a.active {
+    background-color: rgba(52, 152, 219, 0.1);
+    color: var(--accent-color);
+    border-left: 4px solid var(--accent-color);
+}
+
+.admin-menu a:hover i, .admin-menu a.active i {
+    color: var(--accent-color);
+}
+
+.admin-content {
+    flex: 1;
+    margin-left: 260px;
+    padding: 30px 40px;
+}
+
+.admin-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.admin-table-container {
+    background: var(--surface-color);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    overflow-x: auto;
+    border: 1px solid var(--border-color);
+}
+
+.admin-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.admin-table th, .admin-table td {
+    padding: 15px 20px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.admin-table th {
+    background-color: rgba(0, 0, 0, 0.02);
+    font-weight: 600;
+    color: var(--primary-color);
+}
+
+.admin-table tbody tr:hover {
+    background-color: rgba(0, 0, 0, 0.01);
+}
+
+.linha-apagada {
+    opacity: 0.45;
+    background-color: rgba(0, 0, 0, 0.02);
+    transition: all 0.4s ease;
+}
+
+.linha-apagada:hover {
+    opacity: 0.8;
+}
+
+.badge-status {
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    display: inline-block;
+}
+
+.badge-status.respondido {
+    background-color: rgba(46, 204, 113, 0.15);
+    color: #2ecc71;
+    border: 1px solid rgba(46, 204, 113, 0.3);
+}
+
+.badge-status.pendente {
+    background-color: rgba(241, 196, 15, 0.15);
+    color: #f39c12;
+    border: 1px solid rgba(241, 196, 15, 0.3);
+}
+
+.btn-sm {
+    padding: 6px 12px;
+    font-size: 0.85rem;
+}
+
+.btn-excluir {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+    border: 1px solid transparent;
+    color: #e74c3c;
+}
+
+.btn-excluir:hover {
+    background-color: #fef2f2;
+    border-color: #fee2e2;
+    transform: translateY(-1px);
+}
+
+.btn-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: var(--transition);
+    color: #ffffff;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-status.confirmar {
+    background-color: #2ecc71;
+}
+
+.btn-status.confirmar:hover {
+    background-color: #27ae60;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(46, 204, 113, 0.3);
+}
+
+.btn-status.reverter {
+    background-color: #95a5a6;
+}
+
+.btn-status.reverter:hover {
+    background-color: #7f8c8d;
+    transform: translateY(-2px);
+}
+
+@media (max-width: 992px) {
+    .admin-layout {
+        flex-direction: column;
+    }
+
+    .admin-sidebar {
+        position: relative;
+        width: 100%;
+        height: auto;
+        border-right: none;
+        border-bottom: 1px solid var(--border-color);
+        padding-bottom: 10px;
+    }
+
+    .admin-menu {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+        padding: 10px;
+    }
+
+    .admin-menu li {
+        margin-bottom: 0;
+    }
+
+    .admin-menu a {
+        padding: 8px 15px;
+        border-radius: 8px;
+        font-size: 0.9rem;
+        border-left: none !important;
+    }
+
+    .admin-menu a:hover, .admin-menu a.active {
+        border-bottom: 3px solid var(--accent-color);
+        border-left: none !important;
+    }
+
+    .admin-content {
+        margin-left: 0;
+        padding: 20px 15px;
+        width: 100%;
+    }
+
+    .admin-table-container {
+        border: none !important;
+        box-shadow: none !important;
+        background: transparent !important;
+        overflow: visible !important;
+    }
+
+    .admin-table, .admin-table tbody, .admin-table tr, .admin-table td {
+        display: block;
+        width: 100%;
+    }
+
+    .admin-table thead {
+        display: none;
+    }
+
+    .admin-table tr {
+        background-color: var(--surface-color);
+        margin-bottom: 25px;
+        border-radius: 12px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        border: 1px solid var(--border-color);
+        padding: 15px;
+    }
+
+    .admin-table td {
+        padding: 12px 5px;
+        text-align: left;
+        border-bottom: 1px dashed var(--border-color);
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+    }
+
+    .admin-table td:last-child {
+        border-bottom: none;
+        align-items: center;
+        padding-top: 20px;
+        padding-bottom: 5px;
+    }
+}

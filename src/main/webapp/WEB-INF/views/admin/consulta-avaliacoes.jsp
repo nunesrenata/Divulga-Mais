@@ -1,16 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Consultar Serviços - Painel Administrativo</title>
+    <title>Avaliações dos Clientes - Painel Administrativo</title>
 
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/style.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/admin.css">
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 
@@ -36,7 +36,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="${pageContext.request.contextPath}/servicos/consulta" class="active">
+                    <a href="${pageContext.request.contextPath}/servicos/consulta">
                         <i class="fa-solid fa-list-check"></i> Meus Serviços
                     </a>
                 </li>
@@ -46,7 +46,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="${pageContext.request.contextPath}/avaliacoes">
+                    <a href="${pageContext.request.contextPath}/avaliacoes" class="active">
                         <i class="fa-solid fa-star"></i> Avaliações
                     </a>
                 </li>
@@ -62,54 +62,41 @@
         <main class="admin-content">
             
             <div class="admin-header">
-                <h2>Serviços Cadastrados</h2>
-                <a href="${pageContext.request.contextPath}/servicos/cadastro" class="botao btn-sm">
-                    <i class="fa-solid fa-plus"></i> Novo Serviço
-                </a>
+                <h2>Avaliações dos Clientes</h2>
             </div>
 
             <div class="admin-table-container">
                 <table class="admin-table">
                     <thead>
                         <tr>
-                            <th style="width: 60px;">ID</th>
-                            <th style="width: 100px;">Foto</th>
-                            <th>Nome</th>
-                            <th>Descrição</th>
-                            <th style="width: 130px;">Valor</th>
-                            <th style="width: 180px; text-align: center;">Ações</th>
+                            <th style="width: 80px;">ID</th>
+                            <th style="width: 200px;">Nome</th>
+                            <th style="width: 150px;">Telefone</th>
+                            <th style="width: 150px;">Nota</th>
+                            <th>Comentário</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <c:forEach var="s" items="${servicos}">
+                        <c:forEach var="a" items="${avaliacoes}">
                             <tr>
-                                <td style="font-weight: bold; color: var(--text-muted);">#${s.idServico}</td>
+                                <td style="font-weight: bold; color: var(--text-muted);">#${a.idAvaliacao}</td>
+                                <td>${a.nome}</td>
                                 <td>
                                     <c:choose>
-                                        <c:when test="${not empty s.foto}">
-                                            <img src="${s.foto}" alt="Miniatura" style="width: 70px; height: 50px; object-fit: cover; border-radius: 4px;">
-                                        </c:when>
-                                        <c:otherwise>
-                                            <div style="width: 70px; height: 50px; background: #eee; border-radius: 4px; display: flex; align-items: center; justify-content: center; color: #aaa; font-size: 0.8rem;">
-                                                <i class="fa-solid fa-image"></i>
-                                            </div>
-                                        </c:otherwise>
+                                        <c:when test="${not empty a.telefone}">${a.telefone}</c:when>
+                                        <c:otherwise><span style="color: #ccc;">Não informado</span></c:otherwise>
                                     </c:choose>
                                 </td>
-                                <td style="font-weight: 500;">${s.nome}</td>
-                                <td style="color: var(--text-muted); font-size: 0.95rem;">${s.descricao}</td>
-                                <td style="color: #27ae60; font-weight: 600;">
-                                    <fmt:setLocale value="pt_BR"/>
-                                    <fmt:formatNumber value="${s.valor}" type="currency"/>
+                                <td style="letter-spacing: 2px;">
+                                    <c:choose>
+                                        <c:when test="${a.nota==1}">⭐</c:when>
+                                        <c:when test="${a.nota==2}">⭐⭐</c:when>
+                                        <c:when test="${a.nota==3}">⭐⭐⭐</c:when>
+                                        <c:when test="${a.nota==4}">⭐⭐⭐⭐</c:when>
+                                        <c:otherwise>⭐⭐⭐⭐⭐</c:otherwise>
+                                    </c:choose>
                                 </td>
-                                <td style="text-align: center; display: flex; gap: 8px; justify-content: center;">
-                                    <a href="${pageContext.request.contextPath}/servicos/editar?idServico=${s.idServico}" class="botao btn-sm" style="background-color: var(--accent-color);">
-                                        <i class="fa-solid fa-pen"></i> Editar
-                                    </a>
-                                    <a href="${pageContext.request.contextPath}/servicos/excluir?idServico=${s.idServico}" class="botao btn-sm" style="background-color: #e74c3c;" onclick="return confirm('Deseja realmente excluir este serviço?');">
-                                        <i class="fa-solid fa-trash"></i> Excluir
-                                    </a>
-                                </td>
+                                <td>${a.comentario}</td>
                             </tr>
                         </c:forEach>
                     </tbody>
