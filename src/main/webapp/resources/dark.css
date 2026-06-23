@@ -270,3 +270,9 @@ body tr.linha-apagada:hover {
     background-color: rgba(255, 255, 255, 0.06) !important;
     opacity: 0.8;
 }
+
+body div.chat-window { background-color: var(--surface-color) !important; border-color: var(--border-color) !important; }
+body div.chat-body { background-color: #121212 !important; }
+body div.chat-message.bot { background-color: #2a2a2b !important; color: #ffffff !important; border-color: var(--border-color) !important; }
+body div.chat-footer { background-color: var(--surface-color) !important; border-top-color: var(--border-color) !important; }
+body div.chat-footer input { background-color: #121212 !important; color: #ffffff !important; border-color: var(--border-color) !important; }

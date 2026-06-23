@@ -9,8 +9,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Divulga Mais</title>
-
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/style.css?v=6.0">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/style.css?v=9.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 
@@ -69,34 +68,17 @@
 
     <section id="sobre">
         <h2>Sobre o Profissional</h2>
-        
         <div class="sobre-wrapper">
             <div class="sobre-foto-container">
                 <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Profissional trabalhando" class="foto-sobre">
             </div>
-            
             <div class="sobre-textos">
-                <p>
-                    Sou um profissional autônomo especializado em oferecer serviços
-                    com qualidade, comprometimento e atendimento personalizado.
-                </p>
-                <p>
-                    Com vasta experiência no mercado digital, meu principal objetivo é transformar a sua visão em realidade. Aplico as melhores e mais recentes práticas de desenvolvimento para garantir que o seu projeto não seja apenas visualmente atrativo, mas altamente funcional, escalável e focado em gerar conversões.
-                </p>
-                
+                <p>Sou um profissional autônomo especializado em oferecer serviços com qualidade, comprometimento e atendimento personalizado.</p>
+                <p>Com vasta experiência no mercado digital, meu principal objetivo é transformar a sua visão em realidade. Aplico as melhores e mais recentes práticas de desenvolvimento para garantir que o seu projeto não seja apenas visualmente atrativo, mas altamente funcional, escalável e focado em gerar conversões.</p>
                 <div class="sobre-mini-cards">
-                    <div class="mini-card">
-                        <i class="fa-solid fa-laptop-code"></i>
-                        <span>Soluções Inovadoras</span>
-                    </div>
-                    <div class="mini-card">
-                        <i class="fa-solid fa-bullseye"></i>
-                        <span>Foco em Resultados</span>
-                    </div>
-                    <div class="mini-card">
-                        <i class="fa-solid fa-handshake"></i>
-                        <span>Parceria Transparente</span>
-                    </div>
+                    <div class="mini-card"><i class="fa-solid fa-laptop-code"></i><span>Soluções Inovadoras</span></div>
+                    <div class="mini-card"><i class="fa-solid fa-bullseye"></i><span>Foco em Resultados</span></div>
+                    <div class="mini-card"><i class="fa-solid fa-handshake"></i><span>Parceria Transparente</span></div>
                 </div>
             </div>
         </div>
@@ -105,45 +87,18 @@
     <section id="diferenciais" style="padding: 60px 20px; background: var(--bg-total, transparent);">
         <h2>Por Que Nos Escolher?</h2>
         <p style="text-align: center; color: var(--text-muted); margin-bottom: 40px;">Entenda nossos pilares para entregar o melhor resultado para o seu negócio.</p>
-        
         <div class="grid-diferenciais">
-            <div class="card-diferencial">
-                <div class="icon-box"><i class="fa-solid fa-bolt"></i></div>
-                <h3>Alta Performance</h3>
-                <p>Otimização severa de processos e carregamentos para garantir velocidade máxima.</p>
-            </div>
-            
-            <div class="card-diferencial">
-                <div class="icon-box"><i class="fa-solid fa-shield-halved"></i></div>
-                <h3>Segurança Ponta a Ponta</h3>
-                <p>Protocolos rígidos e boas práticas de desenvolvimento para proteção total dos dados.</p>
-            </div>
-            
-            <div class="card-diferencial">
-                <div class="icon-box"><i class="fa-solid fa-headset"></i></div>
-                <h3>Suporte Dedicado</h3>
-                <p>Acompanhamento contínuo e canais de comunicação abertos para resolver suas dúvidas.</p>
-            </div>
+            <div class="card-diferencial"><div class="icon-box"><i class="fa-solid fa-bolt"></i></div><h3>Alta Performance</h3><p>Otimização severa de processos e carregamentos.</p></div>
+            <div class="card-diferencial"><div class="icon-box"><i class="fa-solid fa-shield-halved"></i></div><h3>Segurança Ponta a Ponta</h3><p>Protocolos rígidos e boas práticas de desenvolvimento.</p></div>
+            <div class="card-diferencial"><div class="icon-box"><i class="fa-solid fa-headset"></i></div><h3>Suporte Dedicado</h3><p>Acompanhamento contínuo e canais abertos.</p></div>
         </div>
     </section>
 
     <section class="secao-metricas">
-        <div class="metrica-item">
-            <span class="metrica-numero" data-target="150" data-suffix="+">0</span>
-            <span class="metrica-texto">Projetos Entregues</span>
-        </div>
-        <div class="metrica-item">
-            <span class="metrica-numero" data-target="99.2" data-suffix="%">0</span>
-            <span class="metrica-texto">Satisfação dos Clientes</span>
-        </div>
-        <div class="metrica-item">
-            <span class="metrica-numero" data-target="5" data-suffix="+">0</span>
-            <span class="metrica-texto">Anos de Experiência</span>
-        </div>
-        <div class="metrica-item">
-            <span class="metrica-numero" data-target="24" data-suffix="/7">0</span>
-            <span class="metrica-texto">Monitoramento Ativo</span>
-        </div>
+        <div class="metrica-item"><span class="metrica-numero" data-target="150" data-suffix="+">0</span><span class="metrica-texto">Projetos Entregues</span></div>
+        <div class="metrica-item"><span class="metrica-numero" data-target="99.2" data-suffix="%">0</span><span class="metrica-texto">Satisfação</span></div>
+        <div class="metrica-item"><span class="metrica-numero" data-target="5" data-suffix="+">0</span><span class="metrica-texto">Anos de Experiência</span></div>
+        <div class="metrica-item"><span class="metrica-numero" data-target="24" data-suffix="/7">0</span><span class="metrica-texto">Monitoramento</span></div>
     </section>
 
     <section id="servicos">
@@ -151,24 +106,13 @@
         <div class="cards">
             <c:forEach var="s" items="${servicos}">
                 <div class="card">
-                    <c:choose>
-                        <c:when test="${not empty s.foto}">
-                            <img src="${s.foto}" alt="${s.nome}">
-                        </c:when>
-                        <c:otherwise>
-                            <img src="https://placehold.co/600x400?text=Sem+Imagem" alt="Sem imagem">
-                        </c:otherwise>
-                    </c:choose>
+                    <img src="${not empty s.foto ? s.foto : 'https://placehold.co/600x400?text=Sem+Imagem'}" alt="${s.nome}">
                     <h3>${s.nome}</h3>
                     <p>${s.descricao}</p>
-                    <div class="price">
-                        <fmt:setLocale value="pt_BR"/>
-                        <fmt:formatNumber value="${s.valor}" type="currency"/>
-                    </div>
+                    <div class="price"><fmt:setLocale value="pt_BR"/><fmt:formatNumber value="${s.valor}" type="currency"/></div>
                 </div>
             </c:forEach>
         </div>
-
         <div style="text-align: center; margin-top: 50px;">
             <a href="${pageContext.request.contextPath}/site/servicos" class="botao" style="background-color: var(--accent-color); padding: 14px 35px; font-size: 1.05rem; box-shadow: 0 4px 15px rgba(52, 152, 219, 0.3);">
                 Veja mais sobre os serviços <i class="fa-solid fa-arrow-right" style="margin-left: 8px;"></i>
@@ -178,17 +122,14 @@
 
     <section id="avaliacoes">
         <h2>Avaliações dos Clientes</h2>
-        
         <div class="cards">
             <c:forEach var="a" items="${avaliacoes}">
                 <div class="card">
                     <h3>${a.nome}</h3>
                     <p class="estrelas-display" style="font-size: 1.5rem; letter-spacing: 2px;">
                         <c:choose>
-                            <c:when test="${a.nota==1}">⭐</c:when>
-                            <c:when test="${a.nota==2}">⭐⭐</c:when>
-                            <c:when test="${a.nota==3}">⭐⭐⭐</c:when>
-                            <c:when test="${a.nota==4}">⭐⭐⭐⭐</c:when>
+                            <c:when test="${a.nota==1}">⭐</c:when><c:when test="${a.nota==2}">⭐⭐</c:when>
+                            <c:when test="${a.nota==3}">⭐⭐⭐</c:when><c:when test="${a.nota==4}">⭐⭐⭐⭐</c:when>
                             <c:otherwise>⭐⭐⭐⭐⭐</c:otherwise>
                         </c:choose>
                     </p>
@@ -196,61 +137,32 @@
                 </div>
             </c:forEach>
         </div>
-
         <hr style="margin: 60px 0; border: 0; border-top: 1px solid var(--border-color);">
-
         <h2>Deixe sua avaliação</h2>
         
         <c:if test="${not empty mensagem_sucesso_avaliacao}">
-            <div class="alert alert-success">
-                ${mensagem_sucesso_avaliacao}
-            </div>
-            <c:remove var="mensagem_sucesso_avaliacao" scope="session" />
+            <div class="alert alert-success">${mensagem_sucesso_avaliacao}</div><c:remove var="mensagem_sucesso_avaliacao" scope="session" />
+        </c:if>
+        <c:if test="${not empty mensagem_erro_avaliacao}">
+            <div class="alert alert-danger">${mensagem_erro_avaliacao}</div><c:remove var="mensagem_erro_avaliacao" scope="session" />
         </c:if>
 
-        <c:if test="${not empty mensagem_erro_avaliacao}">
-            <div class="alert alert-danger">
-                ${mensagem_erro_avaliacao}
-            </div>
-            <c:remove var="mensagem_erro_avaliacao" scope="session" />
-        </c:if>
-        
         <div class="form-container">
             <form action="${pageContext.request.contextPath}/avaliacao" method="post" accept-charset="UTF-8">
-                <div class="form-group">
-                    <label for="nomeAvaliacao">Nome</label>
-                    <input type="text" id="nomeAvaliacao" name="nome" class="form-control" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="telefoneAvaliacao">Telefone</label>
-                    <input type="text" id="telefoneAvaliacao" name="telefone" class="form-control">
-                </div>
-
+                <div class="form-group"><label>Nome</label><input type="text" name="nome" class="form-control" required></div>
+                <div class="form-group"><label>Telefone</label><input type="text" name="telefone" class="form-control"></div>
                 <div class="form-group">
                     <label>Nota</label>
                     <div class="estrelas">
-                        <input type="radio" id="estrela5" name="nota" value="5" required>
-                        <label for="estrela5">★</label>
-                        <input type="radio" id="estrela4" name="nota" value="4">
-                        <label for="estrela4">★</label>
-                        <input type="radio" id="estrela3" name="nota" value="3">
-                        <label for="estrela3">★</label>
-                        <input type="radio" id="estrela2" name="nota" value="2">
-                        <label for="estrela2">★</label>
-                        <input type="radio" id="estrela1" name="nota" value="1">
-                        <label for="estrela1">★</label>
+                        <input type="radio" id="e5" name="nota" value="5" required><label for="e5">★</label>
+                        <input type="radio" id="e4" name="nota" value="4"><label for="e4">★</label>
+                        <input type="radio" id="e3" name="nota" value="3"><label for="e3">★</label>
+                        <input type="radio" id="e2" name="nota" value="2"><label for="e2">★</label>
+                        <input type="radio" id="e1" name="nota" value="1"><label for="e1">★</label>
                     </div>
                 </div>
-
-                <div class="form-group">
-                    <label for="comentario">Comentário</label>
-                    <textarea id="comentario" name="comentario" rows="5" class="form-control" required></textarea>
-                </div>
-
-                <div style="text-align: center; margin-top: 30px;">
-                    <button type="submit" class="botao">Enviar Avaliação</button>
-                </div>
+                <div class="form-group"><label>Comentário</label><textarea name="comentario" rows="5" class="form-control" required></textarea></div>
+                <div style="text-align: center; margin-top: 30px;"><button type="submit" class="botao">Enviar Avaliação</button></div>
             </form>
         </div>
     </section>
@@ -332,65 +244,46 @@
 
     <jsp:include page="/WEB-INF/views/components/footer.jsp" />
 
-    <div style="position: fixed; bottom: 25px; right: 25px; background: var(--surface-color, #ffffff); padding: 12px 18px; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.2); z-index: 1000; display: flex; flex-direction: column; align-items: center; border: 1px solid var(--border-color, #e0e0e0);">
-        <span style="color: var(--text-main, #2c3e50); font-size: 0.8rem; font-weight: bold; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 1px;">
-            <i class="fa-solid fa-moon" style="color: #f1c40f; margin-right: 4px;"></i> Modo Noite
-        </span>
-        <label class="theme-switch" for="checkbox-tema" style="margin: 0;">
-            <input type="checkbox" id="checkbox-tema" />
-            <div class="slider round"></div>
-        </label>
+    <div class="chat-bot-container">
+        <div class="chat-window" id="chatWindow">
+            <div class="chat-header">
+                <div class="chat-title"><i class="fa-solid fa-robot"></i> Assistente IA</div>
+                <button class="chat-close" id="chatCloseBtn"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="chat-body" id="chatBody">
+                <div class="chat-message bot"><p>Olá! Sou a inteligência artificial do Divulga Mais. Como posso ajudar a escalar seu projeto hoje?</p></div>
+            </div>
+            <div class="chat-footer">
+                <input type="text" id="chatInput" placeholder="Digite sua dúvida..." autocomplete="off">
+                <button id="chatSendBtn"><i class="fa-solid fa-paper-plane"></i></button>
+            </div>
+        </div>
+        <button class="chat-trigger-btn" id="chatTriggerBtn"><i class="fa-solid fa-message"></i></button>
+    </div>
+
+    <div style="position: fixed; bottom: 25px; right: 25px; background: var(--surface-color); padding: 12px 18px; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.2); z-index: 1000; display: flex; flex-direction: column; align-items: center; border: 1px solid var(--border-color);">
+        <span style="color: var(--text-main); font-size: 0.8rem; font-weight: bold; margin-bottom: 8px;"><i class="fa-solid fa-moon" style="color: #f1c40f;"></i> Modo Noite</span>
+        <label class="theme-switch" for="checkbox-tema" style="margin: 0;"><input type="checkbox" id="checkbox-tema" /><div class="slider round"></div></label>
     </div>
 
     <script>
         const toggleSwitch = document.querySelector('#checkbox-tema');
-        const currentTheme = localStorage.getItem('theme');
-        
-        function ativarModoEscuro() {
+        const ativarModoEscuro = () => {
             if (!document.getElementById('dark-mode-stylesheet')) {
-                const link = document.createElement('link');
-                link.id = 'dark-mode-stylesheet';
-                link.rel = 'stylesheet';
+                const link = document.createElement('link'); link.id = 'dark-mode-stylesheet'; link.rel = 'stylesheet';
                 link.href = '${pageContext.request.contextPath}/resources/dark.css?v=' + new Date().getTime();
                 document.head.appendChild(link);
             }
         }
-
-        function desativarModoEscuro() {
-            const darkLink = document.getElementById('dark-mode-stylesheet');
-            if (darkLink) {
-                darkLink.remove();
-            }
-        }
-
-        if (currentTheme === 'dark') {
-            toggleSwitch.checked = true;
-            ativarModoEscuro();
-        }
-
-        toggleSwitch.addEventListener('change', function(e) {
-            if (e.target.checked) {
-                ativarModoEscuro();
-                localStorage.setItem('theme', 'dark');
-            } else {
-                desativarModoEscuro();
-                localStorage.setItem('theme', 'light');
-            }    
-        });
-
-        document.addEventListener("DOMContentLoaded", function() {
-            const alerta = document.querySelector('.alert');
-            if (alerta) {
-                setTimeout(() => {
-                    alerta.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                }, 300);
-            }
+        const desativarModoEscuro = () => { const el = document.getElementById('dark-mode-stylesheet'); if (el) el.remove(); }
+        if (localStorage.getItem('theme') === 'dark') { toggleSwitch.checked = true; ativarModoEscuro(); }
+        toggleSwitch.addEventListener('change', (e) => {
+            if (e.target.checked) { ativarModoEscuro(); localStorage.setItem('theme', 'dark'); } 
+            else { desativarModoEscuro(); localStorage.setItem('theme', 'light'); }
         });
 
         document.addEventListener("DOMContentLoaded", function() {
             const counters = document.querySelectorAll('.metrica-numero');
-            const speed = 60; 
-
             const observer = new IntersectionObserver((entries, observer) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) { 
@@ -398,35 +291,77 @@
                             const target = parseFloat(counter.getAttribute('data-target'));
                             const suffix = counter.getAttribute('data-suffix');
                             const isFloat = counter.getAttribute('data-target').includes('.');
-
                             const updateCount = () => {
                                 const currentCount = parseFloat(counter.innerText.replace(suffix, '')) || 0;
-                                const increment = target / speed;
-
+                                const increment = target / 60;
                                 if (currentCount < target) {
                                     let newCount = currentCount + increment;
                                     if(newCount > target) newCount = target; 
-                                    
                                     counter.innerText = (isFloat ? newCount.toFixed(1) : Math.ceil(newCount)) + suffix;
                                     setTimeout(updateCount, 30);
-                                } else {
-                                    counter.innerText = target + suffix;
-                                }
+                                } else { counter.innerText = target + suffix; }
                             };
-
                             updateCount();
                         });
                         observer.unobserve(entry.target);
                     }
                 });
             }, { threshold: 0.5 }); 
-
             const secaoMetricas = document.querySelector('.secao-metricas');
-            if (secaoMetricas) {
-                observer.observe(secaoMetricas);
-            }
+            if (secaoMetricas) observer.observe(secaoMetricas);
         });
-    </script>
 
+        const chatTriggerBtn = document.getElementById('chatTriggerBtn');
+        const chatWindow = document.getElementById('chatWindow');
+        const chatCloseBtn = document.getElementById('chatCloseBtn');
+        const chatSendBtn = document.getElementById('chatSendBtn');
+        const chatInput = document.getElementById('chatInput');
+        const chatBody = document.getElementById('chatBody');
+
+        chatTriggerBtn.addEventListener('click', () => chatWindow.classList.add('active'));
+        chatCloseBtn.addEventListener('click', () => chatWindow.classList.remove('active'));
+
+        const iaResponses = [
+            "Ótima pergunta! Para responder isso em detalhes, recomendo acessar nossa aba de Serviços.",
+            "Nossos projetos são focados em escalar negócios digitais. Qual sua maior urgência hoje?",
+            "Entendi! O ideal para o seu caso é agendarmos uma consultoria rápida. O que acha?",
+            "Nossa stack principal utiliza tecnologias modernas para garantir máxima estabilidade e performance.",
+            "O orçamento depende do escopo, mas garantimos o melhor custo-benefício. Vamos conversar via formulário de contato!"
+        ];
+
+        function addMessage(text, sender) {
+            const msgDiv = document.createElement('div');
+            msgDiv.classList.add('chat-message', sender);
+            
+            msgDiv.innerHTML = '<p>' + text + '</p>';
+            
+            chatBody.appendChild(msgDiv);
+            chatBody.scrollTop = chatBody.scrollHeight;
+        }
+
+        function showTypingIndicator() {
+            const typingDiv = document.createElement('div');
+            typingDiv.classList.add('chat-message', 'bot', 'typing-indicator-msg');
+            typingDiv.innerHTML = '<div class="typing-indicator"><span></span><span></span><span></span></div>';
+            chatBody.appendChild(typingDiv);
+            chatBody.scrollTop = chatBody.scrollHeight;
+            return typingDiv;
+        }
+
+        function handleSend() {
+            const text = chatInput.value.trim();
+            if (text === '') return;
+            addMessage(text, 'user');
+            chatInput.value = '';
+            const typingElement = showTypingIndicator();
+            setTimeout(() => {
+                typingElement.remove();
+                addMessage(iaResponses[Math.floor(Math.random() * iaResponses.length)], 'bot');
+            }, 1200); 
+        }
+
+        chatSendBtn.addEventListener('click', handleSend);
+        chatInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') handleSend(); });
+    </script>
 </body>
 </html>

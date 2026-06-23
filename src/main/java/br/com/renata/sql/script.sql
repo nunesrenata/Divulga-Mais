@@ -50,6 +50,6 @@ CREATE TABLE avaliacao (
 
     nota INTEGER NOT NULL CHECK (nota BETWEEN 1 AND 5),
 
-    comentario VARCHAR(500) NOT NULL,
+    comentario VARCHAR(500) NOT NULL
 
 );

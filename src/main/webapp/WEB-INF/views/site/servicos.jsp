@@ -74,6 +74,23 @@
 
     <jsp:include page="/WEB-INF/views/components/footer.jsp" />
 
+    <div class="chat-bot-container">
+        <div class="chat-window" id="chatWindow">
+            <div class="chat-header">
+                <div class="chat-title"><i class="fa-solid fa-robot"></i> Assistente IA</div>
+                <button class="chat-close" id="chatCloseBtn"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="chat-body" id="chatBody">
+                <div class="chat-message bot"><p>Olá! Vi que você está conferindo nossos serviços. Quer ajuda para escolher o melhor plano para você?</p></div>
+            </div>
+            <div class="chat-footer">
+                <input type="text" id="chatInput" placeholder="Digite sua dúvida..." autocomplete="off">
+                <button id="chatSendBtn"><i class="fa-solid fa-paper-plane"></i></button>
+            </div>
+        </div>
+        <button class="chat-trigger-btn" id="chatTriggerBtn"><i class="fa-solid fa-message"></i></button>
+    </div>
+
     <div style="position: fixed; bottom: 25px; right: 25px; background: var(--surface-color, #ffffff); padding: 12px 18px; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.2); z-index: 1000; display: flex; flex-direction: column; align-items: center; border: 1px solid var(--border-color, #e0e0e0);">
         <span style="color: var(--text-main, #2c3e50); font-size: 0.8rem; font-weight: bold; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 1px;">
             <i class="fa-solid fa-moon" style="color: #f1c40f; margin-right: 4px;"></i> Modo Noite
@@ -120,6 +137,62 @@
                     localStorage.setItem('theme', 'light');
                 }    
             });
+        }
+
+        const chatTriggerBtn = document.getElementById('chatTriggerBtn');
+        const chatWindow = document.getElementById('chatWindow');
+        const chatCloseBtn = document.getElementById('chatCloseBtn');
+        const chatSendBtn = document.getElementById('chatSendBtn');
+        const chatInput = document.getElementById('chatInput');
+        const chatBody = document.getElementById('chatBody');
+
+        if(chatTriggerBtn && chatWindow) {
+            chatTriggerBtn.addEventListener('click', () => chatWindow.classList.add('active'));
+            chatCloseBtn.addEventListener('click', () => chatWindow.classList.remove('active'));
+
+            const iaResponses = [
+                "Excelente escolha! Todos os nossos serviços são desenvolvidos sob medida. Quer agendar uma call?",
+                "Podemos integrar essa funcionalidade no seu projeto. Qual sua maior urgência hoje?",
+                "Neste serviço específico, garantimos suporte técnico dedicado após a entrega.",
+                "O orçamento exato depende do escopo, mas nossos valores são flexíveis. Recomendo clicar em 'Solicitar Orçamento'!",
+                "Para detalhes técnicos, utilizamos as stacks mais modernas e seguras do mercado, focando sempre em performance."
+            ];
+
+            function addMessage(text, sender) {
+                const msgDiv = document.createElement('div');
+                msgDiv.classList.add('chat-message', sender);
+                msgDiv.innerHTML = '<p>' + text + '</p>';
+                chatBody.appendChild(msgDiv);
+                chatBody.scrollTop = chatBody.scrollHeight;
+            }
+
+            function showTypingIndicator() {
+                const typingDiv = document.createElement('div');
+                typingDiv.classList.add('chat-message', 'bot', 'typing-indicator-msg');
+                typingDiv.innerHTML = '<div class="typing-indicator"><span></span><span></span><span></span></div>';
+                chatBody.appendChild(typingDiv);
+                chatBody.scrollTop = chatBody.scrollHeight;
+                return typingDiv;
+            }
+
+            function handleSend() {
+                const text = chatInput.value.trim();
+                if (text === '') return;
+                
+                addMessage(text, 'user');
+                chatInput.value = '';
+                
+                const typingElement = showTypingIndicator();
+                
+                setTimeout(() => {
+                    typingElement.remove();
+                    const randomResponse = iaResponses[Math.floor(Math.random() * iaResponses.length)];
+                    addMessage(randomResponse, 'bot');
+                }, 1200); 
+            }
+
+            chatSendBtn.addEventListener('click', handleSend);
+            chatInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') handleSend(); });
         }
     </script>
 
